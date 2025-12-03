@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import localFont from "next/font/local";
 import { Toaster } from "sonner";
-
+  
 const Clash = localFont({ src: "./Clash_Regular.otf"})
 
 export const metadata: Metadata = {
