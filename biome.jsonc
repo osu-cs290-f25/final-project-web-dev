@@ -30,6 +30,10 @@
             "attributes": ["className"]
           }
         }
+      },
+      "performance": {
+        // we love nextjs
+        "noImgElement": "off"
       }
     },
     "domains": {
