@@ -53,7 +53,7 @@ export default function Home() {
           <div className="relative">
             <img src="/banner3.png" alt="" className="w-100" />
             <div className="absolute inset-y-0 left-20 flex text-white">
-              <div className="my-auto text-2xl [text-shadow:_0_0_5px_orange] uppercase">ETHAN BENTLEY</div>
+              <div className="my-auto text-2xl drop-shadow(30px 10px 4px orange); uppercase">ETHAN BENTLEY</div>
             </div>
           </div>
         </div>
