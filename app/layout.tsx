@@ -1,17 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Supercell_Magic from '/Supercell-Magic.ttf';
+import localFont from "next/font/local";
+import { Toaster } from "sonner";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const Clash = localFont({ src: "./Clash_Regular.otf"})
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -26,9 +19,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${Clash.className} antialiased`}
       >
         {children}
+        <Toaster />
       </body>
     </html>
   );
