@@ -1,9 +1,9 @@
 import { create } from "zustand";
-import { devtools, persist } from "zustand/middleware";
+import { persist } from "zustand/middleware";
 
 interface UserState {
   id?: string;
-  setId: (id: string) => void;
+  setId: (id?: string) => void;
 }
 
 export const useUserStore = create<UserState>()(

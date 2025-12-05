@@ -3,6 +3,7 @@ import { Button } from "./components/button";
 import { useUserStore } from "@/lib/useLogin";
 import BattleButton from "./components/battleButton";
 import FooterBanner from "./components/footerBanner";
+import FooterMeetTheTeam from "./components/footerMeetTheTeam";
 
 export default function Home() {
   
@@ -13,68 +14,75 @@ export default function Home() {
         style={{ backgroundImage: "url('/bg.png')" }}
       >
         <img src="/logo.png" className="w-120 object-cover" alt="" />
-        <Link href="/login">
         <BattleButton />
-        </Link>
       </div>
 
       <section>
         <div
-          className="flex h-[220dvh] flex-col items-center justify-center bg-cover"
+          className="flex h-[220dvh] flex-col items-center justify-center bg-cover relative"
           style={{ backgroundImage: "url('/bg-main.png')" }}
-        ></div>
+        >
+          <div className="absolute inset-0 bg-black opacity-60 z-10"></div>
+
+          <div className="text-5xl absolute inset-0 m-25 text-shadow-lg space-y-6 z-11">
+            <p className="text-white">Turn friendly Clash Royale battles into High-Stakes fun!</p>
+            <p className="text-[#ffc800] text-2xl">A Clash Royale betting app where you and your friends place gem wagers on live friendly battles</p>
+            <Link href="/battle" className="text-xl">
+              <Button>
+                Battle Now!
+              </Button>
+            </Link>
+          </div>
+
+          <div className="flex flex-row gap-4 text-white z-11">
+            <div>
+              <p>Wager gems for large payouts!</p>
+            </div>
+            <div>
+              <p>Watch and bet on live games</p>
+            </div>
+
+          </div>
+
+        </div>
       </section>
 
       <footer
         className="flex h-[60dvh] justify-between"
         style={{ backgroundImage: "url('/bg.png')", backgroundSize: "cover" }}
       >
-        <div>
-          <div className="flex flex-col justify-start">
-            <div className="reliative">
-              <div className="relative flex flex-col mt-35">
-                <img src="/banner-main.png" alt="" className="w-125 " /> 
-                <img src="/banner-image.png" alt="" className=" bottom-0 left-0 absolute w-125 " />
-              </div>
-            </div>
-            <div className="flex items-center justify-start bg-[#1D1357]/50 rounded-br-md w-125 h-16">
-               <div className="text-white text-2md ml-10">MEET THE TEAM</div>
-               <div className="relative flex flex-col">
-                <div className="flex items-center ml-30 rounded-br-md rounded-tr-md justify-start bg-[#1D1357]/50 rounded-br-md w-30 h-10"></div>
-                <div className="text-white text-2md ml-10">15000</div>
-               </div>
-            </div>
-          </div>
+        <div className="flex flex-col justify-start">
+          <FooterMeetTheTeam />
         </div>
-
+        
         <div className="mt-5 mb-5 flex flex-col justify-end gap-5">
           <FooterBanner 
             name="SEAN GUTMANN"
             link="https://github.com/SeanG-rsd"
             image="/banner1.png"
             flipX={true}
-            color="green"
+            color="#568553"
             />
           <FooterBanner 
             name="TRISTAN GOEHRING"
             link="https://github.com/0Tristan0"
             image="/banner4.png"
             flipX={false}
-            color="purple"
+            color="#8E37A3"
             />
           <FooterBanner 
             name="LUKAS SEUFERT"
             link="https://github.com/quick007"
             image="/banner2.png"
             flipX={false}
-            color="black"
+            color="#6F6F6F"
             />
           <FooterBanner 
             name="ETHAN BENTLEY"
             link="https://github.com/bentleet"
             image="/banner3.png"
             flipX={false}
-            color="red"
+            color="#F37E00"
             />
         </div>
       </footer>

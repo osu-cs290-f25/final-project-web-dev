@@ -6,6 +6,8 @@ import { winsTable } from "@/lib/schema"
 const apiKey = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjViNjFkY2ViLTk3YTAtNGM0MS05ZGYyLWYzMWY4NTJkZGZlOCIsImlhdCI6MTc2NDgwMTYyMSwic3ViIjoiZGV2ZWxvcGVyLzQ1YTdlYTY4LTZmMzctOTM2OS04MzRkLWNlZjdhNGNmOTIxMiIsInNjb3BlcyI6WyJyb3lhbGUiXSwibGltaXRzIjpbeyJ0aWVyIjoiZGV2ZWxvcGVyL3NpbHZlciIsInR5cGUiOiJ0aHJvdHRsaW5nIn0seyJjaWRycyI6WyI0NS43OS4yMTguNzkiXSwidHlwZSI6ImNsaWVudCJ9XX0.zoTNiB0cdC_flQym0Im27T6mQ615g2cgDqWoqATqdkzEeDk8QhE3g8y5fE6g--PFXDpoK7h3-Ob2qE605lTPXQ"
 console.log(apiKey)
 export default async function GetBattleBetweenPlayers(playerTag: string, opponentTag: string) {
+    console.log(` === playerTag: ${playerTag}`)
+    console.log(` === opponent: ${opponentTag}`)
     const response = await fetch(`https://proxy.royaleapi.dev/v1/players/%23${playerTag}/battlelog`, {
         method: 'GET',
         headers: {
@@ -40,8 +42,9 @@ export default async function GetBattleBetweenPlayers(playerTag: string, opponen
 		time: output.battleTime
 	})
     }
-
+    console.log(output)
+    console.log("HERE")
     return output
 }
 
-await GetBattleBetweenPlayers("2YJYPRQVC", "VU8JY9L");
+//await GetBattleBetweenPlayers("2YJYPRQVC", "VU8JY9L");

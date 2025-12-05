@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/router";
+import { useRouter } from 'next/navigation'
 import { useEffect } from "react";
 import { toast } from "sonner";
 import { useUserStore } from "@/lib/useLogin";
@@ -8,6 +8,7 @@ import { Button } from "../components/button";
 
 export default function Page() {
   const user = useUserStore();
+  const router = useRouter();
 
   return (
     <form
@@ -20,8 +21,8 @@ export default function Page() {
           toast("You must enter an ID!");
           return;
         }
-		window.location.href = "../battle";
-        user.setId(id);
+        user.setId(id.toUpperCase());
+        router.push("/battle")
 		
       }}
     >
@@ -36,7 +37,7 @@ export default function Page() {
         <input
           type="text"
           name="scid"
-          className="text-center rounded-full border-2 border-white/50 py-1 text-1xl text-white focus:outline-none"
+          className="text-center rounded-full border-2 border-white/50 py-1 text-1xl text-white focus:outline-none uppercase"
         ></input>
         <Button className="mt-4 px-10 text-2xl" type="submit">
           Go!
