@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Button } from "./components/button";
 import { useUserStore } from "@/lib/useLogin";
 import BattleButton from "./components/battleButton";
+import FooterBanner from "./components/footerBanner";
 
 export default function Home() {
   
@@ -47,33 +48,34 @@ export default function Home() {
         </div>
 
         <div className="mt-5 mb-5 flex flex-col justify-end gap-5">
-          <div className="relative">
-            <img src="/banner1.png" alt="" className="w-100 scale-x-[-1]" />
-            <div className="absolute inset-y-0 left-20 flex text-white">
-              <div className="my-auto text-2xl [text-shadow:_0_0_5px_green] ">SEAN GUTMANN</div>
-            </div>
-          </div>
-
-          <div className="relative">
-            <img src="/banner4.png" alt="" className="w-100" />
-            <div className="absolute inset-y-0 left-20 flex text-white">
-              <div className="my-auto text-2xl [text-shadow:_0_0_5px_purple]">TRISTAN GOEHRING</div>
-            </div>
-          </div>
-
-          <div className="relative">
-            <img src="/banner2.png" alt="" className="w-100" />
-            <div className="absolute inset-y-0 left-20 flex text-white">
-              <div className="my-auto text-2xl [text-shadow:_0_0_5px_black] uppercase">LUKAS seufert</div>
-            </div>
-          </div>
-
-          <div className="relative">
-            <img src="/banner3.png" alt="" className="w-100" />
-            <div className="absolute inset-y-0 left-20 flex text-white">
-              <div className="my-auto text-2xl [text-shadow:_0_0_5px_red] uppercase">ETHAN BENTLEY</div>
-            </div>
-          </div>
+          <FooterBanner 
+            name="SEAN GUTMANN"
+            link="https://github.com/SeanG-rsd"
+            image="/banner1.png"
+            flipX={true}
+            color="green"
+            />
+          <FooterBanner 
+            name="TRISTAN GOEHRING"
+            link="https://github.com/0Tristan0"
+            image="/banner4.png"
+            flipX={false}
+            color="purple"
+            />
+          <FooterBanner 
+            name="LUKAS SEUFERT"
+            link="https://github.com/quick007"
+            image="/banner2.png"
+            flipX={false}
+            color="black"
+            />
+          <FooterBanner 
+            name="ETHAN BENTLEY"
+            link="https://github.com/bentleet"
+            image="/banner3.png"
+            flipX={false}
+            color="red"
+            />
         </div>
       </footer>
     </div>
