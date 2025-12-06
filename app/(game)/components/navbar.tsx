@@ -48,17 +48,15 @@ export const Navbar =  () => {
 				</MenuButton>
 				<MenuItems anchor="bottom" className="text-white shadow-lg rounded-2xl flex flex-col gap-2 [--anchor-gap:4px] p-4 bg-blue-500/20 backdrop-blur-lg focus:outline-none">
 					<MenuItem as={Button}>
-						<Link className="block data-focus:bg-blue-700/70 px-3 py-1 rounded-full" href="/profile">
+						<Link href="/profile">
 							Profile
 						</Link>
 					</MenuItem>
-					<MenuItem as={Button}>
-						<button onClick={() => {
+					<MenuItem as={Button} onClick={() => {
 							user.setId(undefined)
 							router.push("/")
-						}} className="block data-focus:bg-blue-700/70 px-3 py-1.5 rounded-full">
+						}}>
 							Log Out
-						</button>
 					</MenuItem>
 				</MenuItems>
 			</Menu>

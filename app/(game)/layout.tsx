@@ -1,10 +1,7 @@
-import { Navbar } from "./components/navbar.tsx";
-import useUserStore
+import { Navbar } from "./components/navbar";
+import { useUserStore } from "@/lib/useLogin"
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-	const user = useUserStore();
-
-	useEffect(() => )
 
 	return (
 		<main>
