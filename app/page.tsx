@@ -19,7 +19,7 @@ export default function Home() {
 
       <section>
         <div
-          className="flex h-[220dvh] flex-col items-center justify-center bg-cover relative"
+          className="flex h-[125dvh] flex-col items-center justify-center bg-cover relative"
           style={{ backgroundImage: "url('/bg-main.png')" }}
         >
           <div className="absolute inset-0 bg-black opacity-60 z-10"></div>
