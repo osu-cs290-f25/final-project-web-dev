@@ -5,7 +5,7 @@ interface UserState {
   id?: string;
   setId: (id?: string) => void;
   gems: number;
-  addGems: (n?: number) => void;
+  addGems: (n: number) => void;
 }
 
 export const useUserStore = create<UserState>()(

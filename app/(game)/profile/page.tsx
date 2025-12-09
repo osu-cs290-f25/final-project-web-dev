@@ -4,17 +4,20 @@ import FooterBanner from "../../components/footerBanner";
 import { useUserStore } from "@/lib/useLogin";
 import { useState, useEffect } from "react";
 import getNameFromId from "@/lib/getUser"
+import { getTotalWins } from "@/lib/action"
 
 export default function Home() {
   const user = useUserStore();
 
   const [userName, setUserName] = useState<string>();
+  const [battlesWon, setBattlesWon] = useState<number>()
 
 	useEffect(() => {
 		(async () => {
 			if (user.id) {
-				const name = await getNameFromId(user.id)
+				const [name, wins] = await Promise.all([getNameFromId(user.id), getTotalWins(user.id)])
 				setUserName(name);
+        setBattlesWon(wins)
 			}
 		})();
 	}, [user.id])
@@ -34,7 +37,7 @@ export default function Home() {
             className="absolute inset-0 grid place-items-center text-2xl"
             style={{ textShadow: `2px 2px 0 black` }}
           >
-            {userName}
+            {userName ?? user.id ?? "Loading..."}
           </div>
         </div>
 
@@ -47,7 +50,7 @@ export default function Home() {
             </div>
             <div className="flex">
               <img src="/trophy-icon.png" className="size-6 mr-2" />
-              <p>{user.gems}</p>
+              <p>{battlesWon ?? "Loading..."}</p>
             </div>
           </div>
           <div className="flex flex-col gap-4 items-center">

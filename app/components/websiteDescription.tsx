@@ -5,7 +5,7 @@ interface FooterBannerProps {
 
 export default function WebsiteDescription({ description, image }: FooterBannerProps) {
     return (
-        <div className="flex space-x-8 justify-center bg-black/20 p-4 rounded-lg w-full">
+        <div className="flex space-x-8 justify-center items-center bg-black/20 p-4 rounded-lg w-full">
             <div className="flex flex-col items-center text-center flex-1">
                 <div
                 className={`text-white text-2xl`}

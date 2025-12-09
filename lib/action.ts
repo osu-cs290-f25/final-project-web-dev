@@ -62,7 +62,7 @@ export default async function GetBattleBetweenPlayers(
     console.log(battleT);
     console.log(bet);
 
-    //if (battleT < bet) return null;
+    if (battleT < bet) return null;
 
     let winner = "";
     let loser = "";
@@ -116,7 +116,7 @@ export const getStatsBetweenPlayers = async (
 export const getTotalWins = async (playerTag: string) => {
     const wins = await db.$count(
         winsTable,
-        eq(winsTable.winningPlayer, playerTag),
+        eq(winsTable.winningPlayer, "#" + playerTag),
     );
 
     return wins;

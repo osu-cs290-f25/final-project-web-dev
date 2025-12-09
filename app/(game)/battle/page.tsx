@@ -7,6 +7,7 @@ import BattleCard from "../../components/battleCard";
 import { BattleData, WinBarData } from "./types";
 import { Button } from "@/app/components/button";
 import { toast } from "sonner";
+import WinBar from "@/app/components/winBar";
 
 export enum BattleState {
     PreBattle = "pre-battle",
@@ -21,6 +22,7 @@ export default function Page() {
     const [opponentId, setOpponentId] = useState("");
     const [battle, setBattle] = useState<BattleData>();
     const [state, setState] = useState<BattleState>(BattleState.PreBattle);
+
     const [gemsBet, setGemsBet] = useState(10);
 
     const [winBarData, setWinBar] = useState<WinBarData>();
@@ -30,43 +32,29 @@ export default function Page() {
         const id = setInterval(async () => {
             console.log("get battle");
 
-            // const b = await GetBattleBetweenPlayers(
-            //     user.id!,
-            //     opponentId,
-            //     betTime,
-            // ) as BattleData;
-
             const b = await GetBattleBetweenPlayers(
-                "2YJYPRQVC",
-                "JPPUJYJVV",
+                user.id!,
+                opponentId,
                 betTime,
             ) as BattleData;
 
             if (b != null) {
-                const wbData = await getStatsBetweenPlayers("2YJYPRQVC", "JPPUJYJVV") as WinBarData;
-                
+                const wbData = await getStatsBetweenPlayers(
+                    user.id!,
+                    opponentId,
+                ) as WinBarData;
+                console.log(wbData.playerWins);
+                console.log(wbData.opponentWins);
+
                 setWinBar(wbData);
                 setBattle(b);
                 console.log("GOT BATTLE");
                 setState(BattleState.PostBattle);
+                user.addGems((b.player.crowns > b.opponent.crowns) ?  gemsBet : -gemsBet);
                 clearInterval(id);
             }
-        }, 3000);
+        }, 4000);
     };
-
-    // function checkBattle(betTime: number) {
-    //     (async () => {
-    //         console.log("get battle");
-
-    //         const b = await GetBattleBetweenPlayers(
-    //             user.id!,
-    //             opponentId,
-    //             betTime,
-    //         ) as BattleData;
-    //         console.log(b);
-    //         setBattle(b);
-    //     })();
-    // }
 
     if (state === BattleState.PreBattle) {
         return (
@@ -114,7 +102,7 @@ export default function Page() {
                 onSubmit={(e) => {
                     e.preventDefault();
                     const form = new FormData(e.currentTarget);
-                    
+
                     setState(BattleState.InBattle);
                     checkForGameFinish();
                 }}
@@ -161,18 +149,25 @@ export default function Page() {
 
     // post battle
     return (
-        <div>
-            <div
-                className="flex h-dvh gap-10 items-center justify-center bg-cover text-white"
-                style={{ backgroundImage: "url('/bg.png')" }}
-            >
-                <BattleCard data={battle?.player}></BattleCard>
-                <BattleCard data={battle?.opponent}></BattleCard>
+        <div
+            className="flex flex-col bg-cover text-white h-dvh"
+            style={{ backgroundImage: "url('/bg.png')" }}
+        >
+            <div className="flex h-7/8 gap-10 items-center justify-center">
+                <BattleCard
+                    data={battle?.player}
+                    won={battle &&
+                        (battle.player.crowns > battle.opponent.crowns)}
+                >
+                </BattleCard>
+                <BattleCard
+                    data={battle?.opponent}
+                    won={battle &&
+                        (battle.opponent.crowns > battle.player.crowns)}
+                >
+                </BattleCard>
             </div>
-            <div>
-                <div>{winBarData?.playerWins}</div>
-                <div>{winBarData?.opponentWins}</div>
-            </div>
+            <WinBar data={winBarData}></WinBar>
         </div>
     );
 }
