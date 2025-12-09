@@ -1,10 +1,10 @@
 "use client";
 
-import GetBattleBetweenPlayers from "@/lib/action";
+import GetBattleBetweenPlayers, { getStatsBetweenPlayers } from "@/lib/action";
 import { useUserStore } from "@/lib/useLogin";
 import { useEffect, useRef, useState } from "react";
 import BattleCard from "../../components/battleCard";
-import { BattleData } from "./types";
+import { BattleData, WinBarData } from "./types";
 import { Button } from "@/app/components/button";
 import { toast } from "sonner";
 
@@ -22,34 +22,51 @@ export default function Page() {
     const [battle, setBattle] = useState<BattleData>();
     const [state, setState] = useState<BattleState>(BattleState.PreBattle);
     const [gemsBet, setGemsBet] = useState(10);
-    const intervalIdRef = useRef(null);
+
+    const [winBarData, setWinBar] = useState<WinBarData>();
 
     const checkForGameFinish = () => {
-        if (intervalIdRef.current) return; // Prevent multiple intervals from starting
-
-        const id = setInterval(() => {
-            if (battle) {
-                console.log("GOT BATTLE");
-                return;
-            }
-            checkBattle();
-        }, 1000);
-    };
-
-    function checkBattle() {
         let betTime = Date.now();
-        (async () => {
+        const id = setInterval(async () => {
             console.log("get battle");
 
+            // const b = await GetBattleBetweenPlayers(
+            //     user.id!,
+            //     opponentId,
+            //     betTime,
+            // ) as BattleData;
+
             const b = await GetBattleBetweenPlayers(
-                user.id!,
-                opponentId,
+                "2YJYPRQVC",
+                "JPPUJYJVV",
                 betTime,
             ) as BattleData;
-            console.log(b);
-            setBattle(b);
-        })();
-    }
+
+            if (b != null) {
+                const wbData = await getStatsBetweenPlayers("2YJYPRQVC", "JPPUJYJVV") as WinBarData;
+                
+                setWinBar(wbData);
+                setBattle(b);
+                console.log("GOT BATTLE");
+                setState(BattleState.PostBattle);
+                clearInterval(id);
+            }
+        }, 3000);
+    };
+
+    // function checkBattle(betTime: number) {
+    //     (async () => {
+    //         console.log("get battle");
+
+    //         const b = await GetBattleBetweenPlayers(
+    //             user.id!,
+    //             opponentId,
+    //             betTime,
+    //         ) as BattleData;
+    //         console.log(b);
+    //         setBattle(b);
+    //     })();
+    // }
 
     if (state === BattleState.PreBattle) {
         return (
@@ -142,6 +159,7 @@ export default function Page() {
         );
     }
 
+    // post battle
     return (
         <div>
             <div
@@ -150,6 +168,10 @@ export default function Page() {
             >
                 <BattleCard data={battle?.player}></BattleCard>
                 <BattleCard data={battle?.opponent}></BattleCard>
+            </div>
+            <div>
+                <div>{winBarData?.playerWins}</div>
+                <div>{winBarData?.opponentWins}</div>
             </div>
         </div>
     );

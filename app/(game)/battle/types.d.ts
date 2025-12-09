@@ -18,6 +18,11 @@ export interface PlayerData {
     elixirLeaked: number;
 }
 
+export interface WinBarData {
+    playerWins: number;
+    opponentWins: number;
+}
+
 interface ClanInfo {
     tag: string;
     name: string;

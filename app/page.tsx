@@ -26,11 +26,10 @@ export default function Home() {
 
           <div className="text-5xl relative inset-0 m-25 text-shadow-lg space-y-6 z-11">
             <p className="text-white">
-              Turn friendly Clash Royale battles into High-Stakes fun!
+              Place bets on friendly battles to win rewards!
             </p>
             <p className="text-[#ffc800] text-2xl">
-              A Clash Royale betting app where you and your friends place gem
-              wagers on live friendly battles
+              A Clash Royale betting app where you can wager gems on live friendly battles
             </p>
             <Link href="/battle" className="text-xl">
               <Button>
@@ -38,11 +37,8 @@ export default function Home() {
               </Button>
             </Link>
 
-            <div className="relative flex flex-row gap-4 w-full">
-              <WebsiteDescription
-                description="Play games"
-                image="/gems.png"
-              />
+            <div className="mt-2 relative flex flex-row gap-4 w-full">
+              <WebsiteDescription />
             </div>
           </div>
         </div>

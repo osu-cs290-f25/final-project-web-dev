@@ -23,11 +23,14 @@ export const Navbar =  () => {
 	}, [user.id])
 
 	return (
-		<nav className="fixed bg-blue-600/40 h-14 text-white backdrop-blur-lg rounded-full inset-x-4 top-4 flex items-center px-4 justify-between">
+		<nav className="fixed bg-blue-600/40 h-14 text-white backdrop-blur-lg rounded-full inset-x-4 top-4 flex items-center px-4">
 			<Link href="/">
 				<img src="/logo.png" className="h-10" />
 			</Link>
-
+<div className="ml-auto flex items-center mr-4">
+					<img src="/gems-new.png" className="size-6" />
+					{user.gems}
+				</div>
 			<Menu>
 				<MenuButton className="flex rounded-full bg-blue-500/20 px-3 py-1.5 focus:outline-none">
 					{userName ?? "Loading..."}
@@ -46,6 +49,8 @@ export const Navbar =  () => {
 						/>
 					</svg>
 				</MenuButton>
+
+				
 				<MenuItems anchor="bottom" className="text-white shadow-lg rounded-2xl flex flex-col gap-2 [--anchor-gap:4px] p-4 bg-blue-500/20 backdrop-blur-lg focus:outline-none">
 					<MenuItem as={Button}>
 						<Link href="/profile">

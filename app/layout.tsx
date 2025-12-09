@@ -18,6 +18,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <title>Bet Royale</title>
+      </head>
       <body
         className={`${Clash.className} antialiased`}
       >
